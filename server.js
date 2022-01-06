@@ -1,18 +1,15 @@
 const express = require('express');
-const router = express.Router();
+const bodyParser = require('body-parser');
+const router = require('./network/routes');
 
 const app = express();
 const port = 3000;
 
-app.use(router);
+app.use(bodyParser.json());
+//app.use(router);
+router(app);
 
-router.get('/',(req, res) => {
-  res.send('Holaaaa');
-});
-
-// app.use('/', (req, res) => {
-//   res.send('Holaaaa');
-// });
+app.use('/app', express.static('public'));
 
 app.listen(port, () => {
   console.log('listening on: http://localhost:3000/');
