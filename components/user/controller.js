@@ -1,22 +1,16 @@
 const store = require('./store');
 
-function addMessage(user, message) {
-  return new Promise((resolve, reject) => {
-    if (!user || !message) {
-      console.error('[messageControler] No hay usuario o mensaje');
-      return reject('Los datos son incorrectos');
-    }
+function addUser(name) {
+  if (!name) {
+    console.error('[messageControler] No hay nombre de usuario');
+    return Promise.reject('Los datos son incorrectos');
+  }
 
-    const fullMessage = {
-      user: user,
-      message: message,
-      date: new Date()
-    };
+  const user = {
+    name
+  };
 
-    store.add(fullMessage);
-
-    return resolve(fullMessage);
-  });
+  return store.add(user);;
 }
 
 function listMessages(filterUser) {
@@ -54,7 +48,7 @@ function deleteMessage(id) {
 }
 
 module.exports = {
-  addMessage,
+  addUser,
   listMessages,
   updateMessage,
   deleteMessage

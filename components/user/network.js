@@ -17,12 +17,12 @@ router.get('/',(req, res) => {
 
 router.post('/',(req, res) => {
 
-  controller.addMessage(req.body.user, req.body.message)
-    .then((fullMessage) => {
-      response.success(req, res, fullMessage, 201);
+  controller.addUser(req.body.name)
+    .then((data) => {
+      response.success(req, res, data, 201);
     })
-    .catch(() => {
-      response.error(req, res, 'Informacion invalida', 400);
+    .catch((err) => {
+      response.error(req, res, 'Internal error' + err, 500);
     });
 });
 
