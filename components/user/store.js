@@ -5,26 +5,26 @@ function addUser(user) {
   return myUser.save();
 }
 
-async function getMessages(filterUser) {
+async function getUsers(filterUser) {
   let filter = {}
   if (filterUser !== null){
-    filter = { user: filterUser }
+    filter = { name: filterUser }
   }
-  const messages = await Model.find(filter);
-  return messages;
+  const users = await Model.find(filter);
+  return users;
 }
 
-async function updateText(id, message) {
-  const foundMessage = await Model.findOne({
+async function updateUser(id, name) {
+  const foundUser = await Model.findOne({
     _id: id
   });
 
-  foundMessage.message = message;
-  const newMessage = await foundMessage.save();
-  return newMessage;
+  foundUser.name = name;
+  const newUser= await foundUser.save();
+  return newUser;
 }
 
-async function deleteMessage(id) {
+async function deleteUser(id) {
   return Model.deleteOne({
     _id: id
   });
@@ -32,7 +32,7 @@ async function deleteMessage(id) {
 
 module.exports = {
   add: addUser,
-  list: getMessages,
-  update: updateText,
-  delete: deleteMessage
+  list: getUsers,
+  update: updateUser,
+  delete: deleteUser
 }

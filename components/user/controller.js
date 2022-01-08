@@ -10,28 +10,28 @@ function addUser(name) {
     name
   };
 
-  return store.add(user);;
+  return store.add(user);
 }
 
-function listMessages(filterUser) {
+function listUsers(filterUser) {
   return new Promise((resolve) => {
     resolve(store.list(filterUser));
   });
 }
 
-function updateMessage(id, message) {
+function updateUser(id, name) {
   return new Promise((resolve, reject) => {
-    if (!id || !message) {
+    if (!id || !name) {
       reject('invalid data');
       return false;
     }
-    const result = store.update(id, message);
+    const result = store.update(id, name);
 
     resolve(result);
   });
 }
 
-function deleteMessage(id) {
+function deleteUser(id) {
   return new Promise((resolve, reject) => {
     if (!id) {
       reject('invalid data');
@@ -49,7 +49,7 @@ function deleteMessage(id) {
 
 module.exports = {
   addUser,
-  listMessages,
-  updateMessage,
-  deleteMessage
+  listUsers,
+  updateUser,
+  deleteUser
 }
